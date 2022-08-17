@@ -15,7 +15,7 @@ app = Client(
 )
 
 with app:
-    app.send_message(140193770, "Started ...!")
+    app.send_message(int(config('admin_id')), "Started ...!")
 
 main_keyboard = ReplyKeyboardMarkup(
                 [
