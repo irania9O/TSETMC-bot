@@ -51,3 +51,7 @@ docs/_build/
 
 # important data
 .env
+
+*.session
+*.session-journal
+*.db
