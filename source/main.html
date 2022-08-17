@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html class="fit">
+<head class="fit">
+<meta charset="utf-8">
+<title>%name%</title>
+<style>
+		@font-face {
+			font-family: 'samim';
+			src: url('https://cdn.jsdelivr.net/npm/samim-font@1.0.2/dist/Samim.ttf');
+		}
+
+		.fit {
+			height: fit-content;
+			width: fit-content;
+		}
+
+		small {
+			font-size: 16px;
+		}
+
+		.m-0 {
+			margin: 0;
+		}
+
+    .m-auto {
+      margin: auto;
+    }
+    .fs-12 {
+      font-size: 12px;
+    }
+    .fs-13 {
+      font-size: 13px;
+    }
+    .fs-14 {
+      font-size: 14px;
+    }
+    .fw-bold {
+      font-weight: bold;
+    }
+		.d-flex {
+      display: flex;
+    }
+    .flex-dir-col {
+      flex-direction: column;
+    }
+
+		.title {
+      margin-left: auto;
+		}
+		.flex-between {
+			display: flex;
+			justify-content: space-between;
+		}
+    .flex-around {
+			display: flex;
+			justify-content: space-around;
+		}
+    .flex-center {
+			display: flex;
+			justify-content: center;
+		}
+
+		.align-center {
+			align-items: center;
+		}
+        body {
+            background: #131722c2;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none; 
+            -khtml-user-select: none; 
+            -moz-user-select: none; 
+            -ms-user-select: none; 
+            user-select: none; 
+        }
+
+
+		.container {
+			background-color: #131722;
+			color: #fafafa;
+			font-family: 'samim';
+			padding: 25px;
+			font-family: samim;
+			width: 500px;
+		}
+
+		table {
+			border-collapse: collapse;
+      width: 100%;
+			border-radius: 5px;
+			color: #fafafa;
+			font-family: 'samim';
+		}
+    .status-light {
+      width: 10px;
+      height: 10px;
+      margin-left: 5px;
+      margin-top: 10px;
+      border-radius: 2px
+    }
+		thead {
+			border-bottom: #afadad 1px solid;
+		}
+		thead,td{
+			color: #fafafa;
+			font-family: 'samim';
+		}
+
+		.count {
+			width: 10%;
+			text-align: center;
+		}
+
+		.volume {
+			max-width: 100px;
+			text-align: center;
+			z-index: 2;
+		}
+
+		.price {
+			width: 50px;
+			z-index: 2;
+		}
+
+		.price.sell {
+			text-align: right;
+			padding-right: 10px;
+		}
+
+		.price.buy {
+			text-align: left;
+			padding-left: 10px;
+		}
+		.price-bar--container {
+      position: relative;
+      margin: auto;
+      width: 100%;
+    }
+    .price-bar--base-wrapper {
+			width: 100%;
+			height: 5rem;
+			display: flex;
+			align-items: center;
+		}
+    .price-bar--base {
+      height: 6px;
+      width: 100%;
+      position: absolute;
+      background-color: #111;
+      border-radius: 8px;
+      box-shadow: grey 0px 1px 0px 0px;
+    }
+    .price-bar--positive{
+      height: 6px;
+      background-color: #1bbf89;
+      position: absolute;
+      left: 50%;
+      border-radius: 0 8px 8px 0;
+    }
+    .price-bar--negative{
+      height: 6px;
+      background-color: #db524b;
+      position: absolute;
+      right: 50%;
+      border-radius: 8px 0 0 8px;
+    }
+    .price-bar--arrow-up {
+      position: absolute;
+      bottom: 8px;
+			margin-left: -2%;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid #f5af36;
+    }
+    .price-bar--arrow-down {
+      position: absolute;
+      top: 8px;
+			margin-left: -2%; 
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid #46bccf;
+    }
+    .price-bar--labels{
+      position: absolute;
+	  text-align: center;
+      width: 100%;
+      opacity: .5;
+      font-size: 12px;
+      top: 8px;
+    }
+    .price-bar--label-center:before{
+      position: absolute;
+      bottom: -10px;
+      content: "";
+      width: 1px;
+      height: 10px;
+      background-color: #afadad;
+      left: 50%;
+    }
+   .price-bar--label-center {
+    position: absolute;
+    left: 50%;
+    width: 0;
+    display: flex;
+    justify-content: center;
+    }
+    .price-bar--label-left,.price-bar--label-right {
+          width: 0;
+    display: flex;
+    justify-content: center;
+    }
+
+
+		.table--price-vol {
+			position: relative;
+			width: 100%;
+		}
+
+		.table--vol-bar {
+			position: absolute;
+			height: 26.8px;
+			border-radius: 2px;
+			z-index: 1;
+			top: 0;
+		}
+
+		.table--vol-bar.buy {
+			background-color: #1bbf8990;
+			left: 0;
+		}
+
+		.table--vol-bar.sell {
+			background-color: #db524b90;
+			right: 0;
+		}
+    .volume-bars--container {
+      position: relative;
+      height: 100px;
+    }
+    .volume-bars {
+      height: 50px;
+    }
+    .volume-bars span {
+      font-size: 13px;
+    }
+  
+  .volume-bar--body {
+    width: 40%;
+  }
+  .volume-bar--buy {
+    width: 100%;
+  }
+  .volume-bar--sell {
+    width: 100%;
+  }
+  .volume-bar--base {
+      height: 6px;
+      background-color: #111;
+      position: relative;
+      border-radius: 8px;
+      box-shadow: grey 0px 1px 0px 0px;
+  }
+
+  .volume-bar--progress {
+    height: 5px;
+    position: absolute;
+    border-radius: 8px;
+    margin-top: -6px;
+    top: 7px;
+  }
+  .volume-bar--progress.positive {
+    background-color: #1bbf89;
+    left:0;
+  }
+  .volume-bar--progress.negative {
+    background-color: #db524b;
+    right: 0;
+  }
+  .invalid-volume {
+    position: absolute;
+    transform: rotate(-25deg);
+    color: #FFFF66;
+    z-index: 2;
+    font-weight: bold;
+    font-size: 18px;
+    left: 20%;
+    top: 39%;
+  }
+  .sub {
+    font-size: 12px;
+    color: #afadad;
+  }
+  .day-chart {
+    background: #fafafa14;
+    margin-bottom: 2px;
+    padding: 0px;
+    width: 225px;
+    height: 70px;
+    border-bottom: 1px solid #fafafa7a;
+    border-right: 1px solid #fafafa7a;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    position: absolute;
+    left: 0px;
+    top: 0;
+  }
+  .box>.box--right>span {
+    margin: 3px 0;
+  }
+  .watermark {
+    position: absolute;
+    height: 450px;
+    width: 450px;
+    opacity: .07;
+    left: 50px;
+    top: 108px;
+  }
+  .w-100 {
+    width: 100%;
+  }
+  .h-100 {
+    height: 100%;
+  }
+  .floating-tooltip {
+    height: 68px;
+    position: absolute;
+    padding: 4px;
+    box-sizing: border-box;
+    font-size: 12px;
+    color: rgb(255 255 255);
+    background-color: rgb(47 47 47 / 75%);
+    z-index: 1000;
+    top: 12px;
+    left: 12px;
+    pointer-events: none;
+    border-radius: 2px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+	</style>
+  <script src="https://unpkg.com/lightweight-charts@3.2.0/dist/lightweight-charts.standalone.production.js"></script>
+  <script>
+        const DATA = CHART_DATA;
+        const width = 225;
+        const height = 70;
+            const numbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+function numberToPersian(num) {
+    num = +num;
+    if (num === Infinity || isNaN(num) || num === 0) {
+        return numbers[0]; // zero
+    }
+    num = num.toLocaleString('en', { maximumFractionDigits: 2, useGrouping: true });
+    num = num.replace(/[0-9,\-\.]/g, (m) => ({ ...numbers, ',': '٬', '-': '-', '.': '٫' })[m]);
+    return num;
+}
+    function unitize(num){
+    const converted = +num;
+    if (converted === undefined) return num;
+    let normalized,unit;
+    if (converted / 1e9 >= 1) {
+        normalized = converted / 1e9;
+        unit = 'B';
+    } else if (converted / 1e6 >= 1) {
+        normalized = converted / 1e6;
+        unit = 'M';
+    } else {
+        normalized = converted;
+        unit = '';
+    }
+    return numberToPersian(normalized) + unit;
+}
+       const makeChart = async function() {
+       if (!true) return;
+    
+
+    const chart = LightweightCharts.createChart(document.getElementById("chart"), {
+    layout: {
+      backgroundColor: "#ffffff10",
+      textColor: "#fafafa",
+      fontFamily: "IRANSans",
+      fontSize: 20
+    },
+    grid: { horzLines: { visible: false }, vertLines: { visible: false } },
+    rightPriceScale: {
+      mode: 0,
+      visible: false
+    },
+    localization: {
+      locale: "fa-IR",
+      dateFormat: "yyyy/MM/dd",
+      timeFormatter: timestamp => {
+        return new Date(timestamp * 1000).toLocaleDateString("fa-IR", {
+          weekday: undefined
+        });
+      }
+    },
+    width,
+    height
+  });
+  const lines = chart.addLineSeries({ 
+    priceLineVisible: false, 
+    lineWidth: 2,
+  });
+  chart.timeScale().applyOptions({
+    rightOffset: 3,
+    visible: false,
+    fixLeftEdge: true,
+  });
+
+  const prices = [];
+  const volumes = [];
+  for (const v of DATA) {
+    volumes.push({
+      time: v.t,
+      value: v.v,
+      color: v.c >= v.o ? "#26a69a" : "#ef5350"
+    });
+    prices.push({
+      value: v.c,
+      time: v.t
+    });
+  }
+
+  const histogram = chart.addHistogramSeries({
+    priceFormat: {
+      type: "volume"
+    },
+    priceLineVisible: false,
+    priceLineWidth: null,
+    priceScaleId: "",
+    scaleMargins: {
+      bottom: 0,
+      top: 0.60
+    }
+  });
+  lines.setData(prices);
+  histogram.setData(volumes);
+  chart.timeScale().fitContent();
+
+const toolTipHeight = 68;
+const toolTipMargin = 5;
+  const toolTip = document.getElementById('chart-tooltip');
+
+chart.subscribeCrosshairMove(function(param) {
+	if (!param.time || param.point.x < 0 || param.point.x > width || param.point.y < 0 || param.point.y > height) {
+		toolTip.style.display = 'none';
+		return;
+	}
+	toolTip.style.display = 'flex';
+
+	const price = param.seriesPrices.get(lines);
+	const vol = param.seriesPrices.get(histogram);
+
+    const persianTime = new Date(param.time * 1000).toLocaleTimeString('fa-IR', {timeZone:"Asia/Tehran"});
+	toolTip.innerHTML = `
+    <div style="font-size: 13px; font-weight: bold;">${numberToPersian(price)}</div>
+    <div style="font-size: 12px;">${unitize(vol)}</div>
+    <div style="color: #b6b5b5;">${persianTime}</div>
+    `;
+
+	let y = param.point.y;
+
+    let toolTipWidth = Math.max((price.toString().length), (vol.toString().length)) * 10;
+    if (toolTipWidth < 70) toolTipWidth = 70;
+
+	let left = param.point.x + toolTipMargin;
+	if (left > width - toolTipWidth) {
+		left = param.point.x - toolTipMargin - toolTipWidth;
+	}
+
+	let top = y + toolTipMargin;
+	if (top > height - toolTipHeight) {
+		top = y - toolTipHeight - toolTipMargin;
+	}
+
+    toolTip.style.width = `${toolTipWidth}px`;
+	toolTip.style.left = left + 'px';
+	toolTip.style.top = top + 'px';
+});
+
+       }
+         document.addEventListener("DOMContentLoaded", makeChart);
+
+    </script>
+</head>
+
+<body class="fit m-0" style="position: relative">
+<div style="position: absolute;" class="w-100 h-100 flex-center align-center">
+  <img class="watermark" src="https://s6.uupload.ir/files/i_450x450_zeoz.png" alt="watermark" >
+  </div>
+	<div class="container d-flex flex-dir-col">
+  <div style="padding:1.5rem">
+    <div style="margin-top: -13px">
+    <div class="fs-13 flex-center align-center" dir="rtl" style="color: #afadad;"><span class="fs-12">زمان ثبت تصویر: </span>&nbsp;<span class="fw-bold">DATE_TIME</span> </div>
+		<div class="flex-between align-center" dir="rtl">
+
+    <div class="flex-between">
+      <div class="status-light" style="background-color:#1bbf89;"></div>
+    <div class="d-flex align-center flex-dir-col" >
+			<span class="title align-center">
+      <b>%name%</b>
+      <span class="sub"></span></span>
+      <span class="sub d-flex" style="margin-right: -20px; min-width: 100%;">%detail%</span>
+   
+      </div>
+    </div>
+			<span><small dir="ltr" style="color: pDrCotVal_percentage_color">(%pDrCotVal_percentage%%)</small> <b style="font-size:24px">%pDrCotVal%</b></span>
+		</div>
+		<div class="flex-between align-center" style="margin: 5px 0;" dir="rtl">
+			<span dir="rtl"><small style="color:#46bccf;">قیمت پایانی:</small> <small dir="ltr" style="color: pClosing_percentage_color">(%pClosing_percentage%%)</small> <span class="fw-bold">%pClosing%</span></span>
+    			<span dir="rtl"><small>حجم: </small><span style="opacity:1;" class="fw-bold">%qTotTran5J%</span></span>
+		</div>
+   </div>
+    <div style="border: solid 1px #fafafa7a;
+    padding: 4px 20px;
+    border-radius: 10px;
+    margin-top: -1px;
+    position: relative;">
+  <div class="flex-between box">
+   <div class="flex-between flex-dir-col box--left" dir="rtl" style="margin-top: 70px; margin-left: 1.5rem">
+	
+		</div>
+    
+    
+    <div class="flex-around flex-dir-col box--right" dir="rtl">
+    <span dir="rtl" class="fs-13" style="opacity:.8;"><small class="fs-13">ارزش معاملات: </small><span style="color: #fafafa;" class="fw-bold">%qTotCap%</span></span>
+    <span dir="rtl" class="fs-13" style="opacity:.8"><small class="fs-13">تعداد معاملات: </small><span class="fs-13 fw-bold" style="color:#fafafa;opacity:1;">%zTotTran%</span></span>
+    <span dir="rtl" class="fs-13" style="opacity:.8"><small class="fs-13"> اولین قیمت: </small><span class="fs-13 fw-bold" style="opacity:1;">%priceFirst%</span></span>
+    <span dir="rtl" class="fs-13" style="opacity:.8;"><small class="fs-13">قیمت دیروز: </small> </small><span class="fw-bold" style="color:#fafafa;opacity:1;">%priceYesterday%</span></span>
+    
+   
+     <div id="chart" class="day-chart"></div>
+     <div id="chart-tooltip" class="floating-tooltip"></div>
+    </div>
+   
+  </div>
+        </div>
+        <br>
+	<div class="flex-around align-center price-bar--container">
+				<div class="flex-between price-bar--labels">
+					<span class="price-bar--label-left fw-bold">
+                %priceMinperiod%
+             </span>
+					<span class="price-bar--label-center fw-bold">
+                %priceYesterday%
+             </span>
+					<span class="price-bar--label-right fw-bold">
+                %priceMaxperiod%
+
+              
+            </span>
+				</div>
+				<div class="price-bar--base-wrapper">
+					<div class="price-bar--base">
+						<div class="price-bar--arrow-down" style="left: closing_pointer;"></div>
+						<div class="price-bar--arrow-up" style="left: pDrCotVal_pointer"></div>
+						<div class="price-bar--negative" style="width: negative_percentage; margin-right:0%"></div>
+						<div class="price-bar--positive" style="width: postive_percentage; margin-left:0%"></div>
+					</div>
+				</div>
+			</div>
+		<table>
+			<thead>
+				<tr>
+					<th class="count" style="color:#afadad; font-size:14px;">تعداد</th>
+					<th style="width:40%">
+						<div class="flex-between">
+							<span class="volume" style="color:#afadad; font-size:14px;">حجم</span>
+							<span class="price sell" style="color:#afadad; font-size:14px; margin-right:4px;">قیمت</span>
+						</div>
+					</th>
+					<th style="width:40%">
+						<div class="flex-between">
+							<span class="price buy" style="color:#afadad; font-size:14px; margin-left:4px;">قیمت</span>
+							<span class="volume" style="color:#afadad; font-size:14px;">حجم</span>
+						</div>
+					</th>
+					<th class="count" style="color:#afadad; font-size:14px;">تعداد</th>
+				</tr>
+			</thead>
+			<div></div>
+
+			<tbody>
+          %today%
+			</tbody>
+		</table>
+    <br>
+    <hr style="width:100%; margin-top: 15px; opacity: .4;">
+
+    <div class="volume-bars--container d-flex flex-dir-col">
+      <!-- حقیقی  -->      
+      <div class="volume-bars flex-between align-center">
+        <div class="volume-bar--body flex-between align-center flex-dir-col">
+              <!-- حقیقی فروش -->      
+              <span>%sell_CountI%</span>
+              <div class="volume-bar--sell">
+                    <div class="volume-bar--base">
+                        <div class="volume-bar--progress negative" style="width: 86.08%"></div>
+                    </div>
+              </div>
+              <span style="line-height: 24px;"> %sell_I_Volume% <span style="opacity: .8">(|sell_I_Percent|%)</span></span>
+              <!-- پایان حقیقی فروش -->      
+        </div>
+
+        <span>حقیقی</span>
+
+        <div class="volume-bar--body flex-between align-center flex-dir-col">
+              <!-- حقیقی خرید -->      
+              <span>%buy_CountI%</span>
+              <div class="volume-bar--buy">
+                    <div class="volume-bar--base">
+                      <div class="volume-bar--progress positive" style="width: 69.77%"></div>
+                    </div>
+                    
+              </div>
+              <span style="line-height: 24px;"> %buy_I_Volume% <span style="opacity: .8">(|buy_I_Percent|%)</span></span>
+              <!--پایان حقیقی خرید -->      
+        </div>
+
+      </div>
+  <!-- پایان حقیقی  -->      
+  <!-- حقوقی  -->      
+      <div class="volume-bars flex-between align-center">
+        <div class="volume-bar--body flex-between align-center flex-dir-col">
+        <span>%sell_CountN%</span>
+        <div class="volume-bar--sell">
+          <div class="volume-bar--base">
+          <div class="volume-bar--progress negative" style="width: 13.92%"></div>
+          </div>
+          
+        </div>
+        <span style="line-height: 24px;"> %sell_N_Volume% <span style="opacity: .8">(|sell_N_Percent|%)</span></span>
+        </div>
+
+        <span>حقوقی</span>
+
+        <div class="volume-bar--body flex-between align-center flex-dir-col">
+        <span>%buy_CountN%</span>
+        <div class="volume-bar--buy">
+          <div class="volume-bar--base">
+            <div class="volume-bar--progress positive" style="width: 30.23%"></div>
+          </div>
+        </div>
+        <span style="line-height: 24px;">%buy_N_Volume% <span style="opacity: .8">(|buy_N_Percent|%)</span></span>
+        </div>
+      </div>
+    <!-- حقوقی  -->
+</div>
+
+<div class="m-auto fs-12 flex-center align-center" style="opacity: .85; padding-top:10px;margin-bottom: -8px;">
+<span style="margin-right:5px">@BoursinioBot | ربات بورسینیو</span>
+<img style=" height: 40px;
+width: 40px;" src="https://s6.uupload.ir/files/i_40x40_ryy3.png" alt="watermark">
+</div>
+	</div>
+  </div>
+  <script>
+  const body = document.body;
+  const isWide = innerWidth / innerHeight > 1;
+  body.style.zoom = isWide ?  innerHeight / body.offsetHeight : innerWidth/ body.offsetWidth;
+  </script>
+</body>
+</html>

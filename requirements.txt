@@ -1,0 +1,5 @@
+tgcrypto
+uvloop
+pyrogram
+python-decouple
+html2image
