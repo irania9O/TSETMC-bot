@@ -3,3 +3,4 @@ uvloop
 pyrogram
 python-decouple
 html2image
+requests
