@@ -3,8 +3,19 @@ from source.TsetmcApi import Tsetmc
 from pyrogram import Client,filters
 from decouple import config
 from source import jalali
+import sqlite3
 from pyrogram.types import (ReplyKeyboardMarkup, InlineKeyboardMarkup,
                             InlineKeyboardButton)
+
+conn = sqlite3.connect('database.db')
+c = conn.cursor()
+c.execute(
+""" CREATE TABLE IF NOT EXISTS PERSON
+    (                           
+        ID      INTEGER     PRIMARY KEY
+    );
+"""
+)
 
 
 app = Client(
@@ -28,6 +39,12 @@ main_keyboard = ReplyKeyboardMarkup(
 
 @app.on_message(filters.command("start",["/"]))
 async def me(client, message):
+    try:
+        c.execute("INSERT INTO PERSON (ID) values(?)",(message.from_user.id,))
+    except Exception as e:
+        print(e)
+    finally:
+        conn.commit()
     await message.reply("سلام،\nخوش اومدی!\nبرای استفاده از ربات یا از دکمه های زیر استفاده کن یا به طور کامل اسم نماد مورد نظرتو بفرست." , reply_markup=main_keyboard)
 
 @app.on_message(filters.regex("👨‍🏫 راهنما"))
